@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!--code partially used from: https://spring.io/guides/gs/handling-form-submission/-->
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo App</title>
+</head>
+<body>
+	<h1>Demo App</h1>
+	<form action="/register" th:object="${formInput}" method="post">
+		Email:
+		<input type="email" th:field="*{email}" />
+		Password:
+		<input type="password" th:field="*{password}" />
+		<input type="submit" value="submit" />
+	</form>
+</body>
+</html>

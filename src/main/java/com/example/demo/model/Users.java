@@ -1,8 +1,8 @@
-package com.example.demo;
+package com.example.demo.model;
 
 //class object for registration form fields data
 
-public class RegisterFields {
+public class Users {
     private String email;
     private String password;
 
@@ -20,5 +20,9 @@ public class RegisterFields {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String toString() {
+        return "Email: " + this.email;
     }
 }

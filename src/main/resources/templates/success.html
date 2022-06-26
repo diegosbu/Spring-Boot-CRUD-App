@@ -6,8 +6,12 @@
 	<title>Demo App</title>
 </head>
 <body>
-<h1>Demo App</h1>
-	<p th:text="'email: ' + ${formInput.email}" />
-	<p th:text="'password: ' + ${formInput.password}" />
+	<h1>Demo App</h1>
+	<p th:if="${loggingIn and success}">Logged In!</p>
+	<p th:if="${loggingIn and not success}">Wrong username/password</p>
+
+	<p th:if="${not loggingIn and success}">Successfully Registered</p>
+	<p th:unless="${loggingIn or success}">Email already exists</p>
+
 </body>
 </html>

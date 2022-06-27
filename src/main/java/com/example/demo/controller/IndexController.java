@@ -34,9 +34,14 @@ public class IndexController {
 
     @PostMapping("/register")
     public String registerSubmit(@ModelAttribute Users formInput, Model model) {
-        userService.insert(formInput);
         model.addAttribute("loggingIn", false);
-        model.addAttribute("success", true);
+
+        if (userService.insert(formInput) != 0) {
+            model.addAttribute("success", true);
+        } else {
+            model.addAttribute("success", false);
+        }
+
         return "success";
     }
 

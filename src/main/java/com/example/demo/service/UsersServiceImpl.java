@@ -14,7 +14,11 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public int insert(Users user) {
-        return usersRepository.insert(user);
+        if (findOne(user).isEmpty()) {
+            return usersRepository.insert(user);
+        } else {
+            return 0;
+        }
     }
 
     @Override

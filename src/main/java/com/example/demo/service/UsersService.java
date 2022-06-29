@@ -8,4 +8,6 @@ public interface UsersService {
     int insert(Users user);
 
     List<Users> findOne(Users user);
+
+    boolean exists(Users user);
 }

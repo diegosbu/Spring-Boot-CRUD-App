@@ -29,11 +29,17 @@ public class UsersRepositoryImpl implements UsersRepository {
 
     //    findOne - Returns existing user info
     @Override
-    public List<Users> findOne(@ModelAttribute Users formInput) {
+    public List<Users> findOne(Users formInput) {
         String userEmail = formInput.getEmail();
         String userPwd = formInput.getPassword();
 
-        return jdbcTemplate.query("SELECT * from users WHERE email = ? AND password = ?", new UsersMapper(), userEmail, userPwd);
+        return jdbcTemplate.query("SELECT email from users WHERE email = ? AND password = ?", new UsersMapper(), userEmail, userPwd);
     }
 
+    @Override
+    public boolean exists(Users formInput) {
+        String userEmail = formInput.getEmail();
+
+        return !jdbcTemplate.query("SELECT email from users WHERE email = ?", new UsersMapper(), userEmail).isEmpty();
+    }
 }

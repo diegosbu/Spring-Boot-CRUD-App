@@ -14,16 +14,21 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public int insert(Users user) {
-        if (findOne(user).isEmpty()) {
-            return usersRepository.insert(user);
-        } else {
+        if (exists(user)) {
             return 0;
+        } else {
+            return usersRepository.insert(user);
         }
     }
 
     @Override
     public List<Users> findOne(Users user) {
         return usersRepository.findOne(user);
+    }
+
+    @Override
+    public boolean exists(Users user) {
+        return usersRepository.exists(user);
     }
 
 }

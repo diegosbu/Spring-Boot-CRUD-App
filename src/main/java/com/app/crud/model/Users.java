@@ -1,6 +1,6 @@
-package com.example.demo.model;
+package com.app.crud.model;
 
-//class object for registration form fields data
+//  Model of users data fields
 
 public class Users {
     private String email;
@@ -22,7 +22,11 @@ public class Users {
         this.password = password;
     }
 
+    public String getRoles() {
+        return "USER";
+    }
+
     public String toString() {
-        return "Email: " + this.email;
+        return "Email: " + this.email + "Password: " + this.password;
     }
 }

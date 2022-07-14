@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package com.app.crud.repository;
 
-import com.example.demo.model.Users;
+import com.app.crud.model.Users;
 
 import java.util.List;
 

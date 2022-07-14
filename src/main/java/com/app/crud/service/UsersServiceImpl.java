@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.app.crud.service;
 
-import com.example.demo.model.Users;
-import com.example.demo.repository.UsersRepository;
+import com.app.crud.model.Users;
+import com.app.crud.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +12,7 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     UsersRepository usersRepository;
 
+    //  insert - calls usersRepository to insert non-existing user
     @Override
     public int insert(Users user) {
         if (exists(user)) {
@@ -21,11 +22,13 @@ public class UsersServiceImpl implements UsersService {
         }
     }
 
+    //  findOne - calls usersRepository to return user info
     @Override
     public List<Users> findOne(Users user) {
         return usersRepository.findOne(user);
     }
 
+    //  findOne - calls usersRepository to return if user exists
     @Override
     public boolean exists(Users user) {
         return usersRepository.exists(user);

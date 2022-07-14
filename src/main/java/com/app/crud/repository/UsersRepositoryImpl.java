@@ -1,16 +1,14 @@
-//code partially used from:
-// https://www.javatpoint.com/RowMapper-example
+//code partially used from: https://www.javatpoint.com/RowMapper-example
 
-package com.example.demo.repository;
+package com.app.crud.repository;
 
-import com.example.demo.model.UsersMapper;
-import com.example.demo.model.UsersPwdMapper;
+import com.app.crud.model.UsersEmailMapper;
+import com.app.crud.model.UsersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.example.demo.model.Users;
+import com.app.crud.model.Users;
 
 import java.util.List;
 
@@ -19,7 +17,7 @@ public class UsersRepositoryImpl implements UsersRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    //  insert - Inserts potential new user into db
+    //  insert - inserts new user into db
     @Override
     public int insert(Users formInput) {
         String userEmail = formInput.getEmail();
@@ -34,7 +32,7 @@ public class UsersRepositoryImpl implements UsersRepository {
         String userEmail = formInput.getEmail();
         String userPwd = formInput.getPassword();
 
-        return jdbcTemplate.query("SELECT email FROM users WHERE email = ? AND password = ?", new UsersMapper(), userEmail, userPwd);
+        return jdbcTemplate.query("SELECT email, password FROM users WHERE email = ?", new UsersMapper(), userEmail);
     }
 
     //  exists - returns true if user exists
@@ -42,6 +40,6 @@ public class UsersRepositoryImpl implements UsersRepository {
     public boolean exists(Users formInput) {
         String userEmail = formInput.getEmail();
 
-        return !jdbcTemplate.query("SELECT email FROM users WHERE email = ?", new UsersMapper(), userEmail).isEmpty();
+        return !jdbcTemplate.query("SELECT email FROM users WHERE email = ?", new UsersEmailMapper(), userEmail).isEmpty();
     }
 }

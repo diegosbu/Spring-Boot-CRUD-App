@@ -5,6 +5,7 @@ package com.app.crud.controller;
 import com.app.crud.model.Users;
 import com.app.crud.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,12 @@ public class MainController {
     UsersService userService;
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model, Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            model.addAttribute("authenticated", true);
+        } else {
+            model.addAttribute("authenticated", false);
+        }
         return "index";
     }
 

@@ -3,7 +3,7 @@
 package com.app.crud.repository;
 
 import com.app.crud.model.UsersEmailMapper;
-import com.app.crud.model.UsersMapper;
+import com.app.crud.model.UsersPwdMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -32,7 +32,7 @@ public class UsersRepositoryImpl implements UsersRepository {
         String userEmail = formInput.getEmail();
         String userPwd = formInput.getPassword();
 
-        return jdbcTemplate.query("SELECT email, password FROM users WHERE email = ?", new UsersMapper(), userEmail);
+        return jdbcTemplate.query("SELECT email, password FROM users WHERE email = ?", new UsersPwdMapper(), userEmail);
     }
 
     //  exists - returns true if user exists

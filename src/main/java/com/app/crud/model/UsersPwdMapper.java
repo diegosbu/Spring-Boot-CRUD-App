@@ -7,10 +7,10 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UsersMapper implements RowMapper {
+public class UsersPwdMapper extends UsersEmailMapper implements RowMapper {
+    @Override
     public Users mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Users user = new Users();
-        user.setEmail(rs.getString("email"));
+        Users user = super.mapRow(rs, rowNum);
         user.setPassword(rs.getString("password"));
 
         return user;

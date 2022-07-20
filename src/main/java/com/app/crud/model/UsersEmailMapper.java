@@ -7,10 +7,9 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UsersEmailMapper extends UsersMapper implements RowMapper {
-    @Override
+public class UsersEmailMapper implements RowMapper {
     public Users mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Users user = super.mapRow(rs, rowNum);
+        Users user = new Users();
         user.setEmail(rs.getString("email"));
 
         return user;

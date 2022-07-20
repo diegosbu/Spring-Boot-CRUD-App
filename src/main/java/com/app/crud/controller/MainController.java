@@ -22,9 +22,8 @@ public class MainController {
     }
 
     @GetMapping("/register")
-    public String registerForm(Model model, Model model2) {
+    public String registerForm(Model model) {
         model.addAttribute("formInput", new Users());
-        model2.addAttribute("loggingIn", false);
         return "register";
     }
 

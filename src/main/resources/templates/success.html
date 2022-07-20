@@ -8,8 +8,8 @@
 <body>
 	<h1>Demo App</h1>
 
-	<p th:if="${not loggingIn and success}">Successfully Registered</p>
-	<p th:unless="${loggingIn or success}">Email already exists</p>
+	<p th:if="${success}">Successfully Registered</p>
+	<p th:unless="${success}">Email already exists</p>
 
 </body>
 </html>

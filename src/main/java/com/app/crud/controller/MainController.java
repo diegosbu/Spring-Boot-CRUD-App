@@ -29,8 +29,6 @@ public class MainController {
 
     @PostMapping("/register")
     public String registerSubmit(@ModelAttribute Users formInput, Model model) {
-        model.addAttribute("loggingIn", false);
-
         if (userService.insert(formInput) != 0) {
             model.addAttribute("success", true);
         } else {

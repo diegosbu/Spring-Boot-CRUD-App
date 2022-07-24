@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- code partially used from: https://spring.io/guides/gs/handling-form-submission/ -->
+
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CRUD App</title>
+</head>
+<body>
+	<h1>CRUD App</h1>
+
+	<nav>
+		<a href="/">Home</a>
+		&nbsp;
+		<a href="/register"> Register</a>
+	</nav>
+
+	<div th:if="${param.error}">
+		Invalid username/password
+	</div>
+
+	<div th:if="${param.logout}">
+		You have been logged out
+	</div>
+
+	<br>
+
+	<form th:action="@{/login}" method="post">
+		Username:
+		<input type="text" name="username"/>
+		Password:
+		<input type="password" name="password" />
+		<input type="submit" value="Log in" />
+	</form>
+</body>
+</html>

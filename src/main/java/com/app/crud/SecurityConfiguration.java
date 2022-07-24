@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfiguration {
@@ -28,10 +29,14 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin").hasAuthority("ADMIN")
-                .antMatchers("/user").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/login*").anonymous()
+                .antMatchers("/register*").anonymous()
+                .antMatchers("/logout").authenticated()
                 .antMatchers("/").permitAll()
-                .and().formLogin();
+                .and().formLogin()
+                    .loginPage("/login")
+                .and().logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 
         return http.build();
     }

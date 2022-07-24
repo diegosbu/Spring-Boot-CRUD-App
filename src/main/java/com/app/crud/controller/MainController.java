@@ -24,15 +24,24 @@ public class MainController {
         } else {
             model.addAttribute("authenticated", false);
         }
+
         return "index";
     }
 
+    //  loginForm - displays login form
+    @GetMapping("/login")
+    public String loginForm() {
+        return "login";
+    }
+
+    // registerForm - displays registration form
     @GetMapping("/register")
     public String registerForm(Model model) {
         model.addAttribute("formInput", new Users());
         return "register";
     }
 
+    // registerSubmit - submits registration form and calls userService
     @PostMapping("/register")
     public String registerSubmit(@ModelAttribute Users formInput, Model model) {
         if (userService.insert(formInput) != 0) {
@@ -43,4 +52,5 @@ public class MainController {
 
         return "success";
     }
+
 }

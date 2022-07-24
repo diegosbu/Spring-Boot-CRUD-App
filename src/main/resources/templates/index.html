@@ -2,11 +2,18 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Demo App</title>
+	<title>CRUD App</title>
 </head>
 <body>
-	<h1>Demo App</h1>
-	<nav> <a href="/"> Home </a> <a href="/register"> Register </a>
-		<a th:if="not ${authenticated}" href="/login"> Login </a> <a th:unless="not ${authenticated}" href="/logout"> Logout </a>  </nav>
+	<h1>CRUD App</h1>
+	<nav>
+		<a href="/">Home</a>
+		&nbsp;
+		<a th:if="not ${authenticated}" href="/register"> Register</a>
+		&nbsp;
+		<a th:if="not ${authenticated}" href="/login">Login</a>
+		&nbsp;
+		<a th:if="${authenticated}" href="/logout">Logout</a>
+	</nav>
 </body>
 </html>

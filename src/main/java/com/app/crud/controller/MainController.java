@@ -34,6 +34,12 @@ public class MainController {
         return "login";
     }
 
+    //  loginForm - displays login form
+    @GetMapping("/logout")
+    public String logoutForm() {
+        return "logout";
+    }
+
     // registerForm - displays registration form
     @GetMapping("/register")
     public String registerForm(Model model) {

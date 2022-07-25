@@ -29,14 +29,17 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/logout").authenticated()
                 .antMatchers("/login*").anonymous()
                 .antMatchers("/register*").anonymous()
-                .antMatchers("/logout").authenticated()
                 .antMatchers("/").permitAll()
-                .and().formLogin()
-                    .loginPage("/login")
-                .and().logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .and()
+            .logout()
+                .logoutUrl("/logout");
 
         return http.build();
     }

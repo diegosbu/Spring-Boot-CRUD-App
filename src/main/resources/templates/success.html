@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <!--code partially used from: https://spring.io/guides/gs/handling-form-submission/-->
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>CRUD App</title>
-</head>
-<body>
-	<h1>CRUD App</h1>
+	<head th:replace="general :: head">
+	</head>
 
-	<p th:if="${success}">Successfully Registered</p>
-	<p th:unless="${success}">Email already exists</p>
-</body>
+	<body>
+		<div th:insert="general :: header"></div>
+
+		<div th:insert="general :: navbar"></div>
+
+		<p th:if="${success}">Successfully Registered! You can login now</p>
+		<p th:unless="${success}">Email already exists</p>
+
+		<div th:insert="general :: footer"></div>
+	</body>
 </html>

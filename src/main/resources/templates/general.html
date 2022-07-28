@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+	<head th:fragment = "head">
+		<title>Crud App</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" th:href="@{/css/main.css}">
+		<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+	</head>
+
+	<body>
+		<div th:fragment = "header">
+			<header>
+				<h1>CRUD App</h1>
+			</header>
+		</div>
+
+		<div th:fragment = "navbar">
+			<nav>
+				<a href="/">Home</a>
+				&nbsp;
+				<a sec:authorize="isAnonymous()" href="/register"> Register</a>
+				&nbsp;
+				<a sec:authorize="isAnonymous()" href="/login">Login</a>
+				&nbsp;
+				<a sec:authorize="isAuthenticated()" href="/logout">Logout</a>
+			</nav>
+		</div>
+
+		<div th:fragment = "footer">
+			<footer>
+				<small> Created by Diego Sanchez </small>
+
+				<br>
+
+				<small> <a href = "https://github.com/diegosbu/"> Github </a> </small>
+			</footer>
+		</div>
+	</body>
+</html>

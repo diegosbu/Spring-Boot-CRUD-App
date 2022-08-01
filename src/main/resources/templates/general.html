@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 	<head th:fragment = "head">
-		<title>Crud App</title>
+		<title>NBA Stats App</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" th:href="@{/css/main.css}">
@@ -9,13 +9,13 @@
 	</head>
 
 	<body>
-		<div th:fragment = "header">
+		<div class="header" th:fragment = "header">
 			<header>
-				<h1>CRUD App</h1>
+				<h1>NBA Stats App</h1>
 			</header>
 		</div>
 
-		<div th:fragment = "navbar">
+		<div class="navbar" id th:fragment = "navbar">
 			<nav>
 				<a href="/">Home</a>
 				&nbsp;
@@ -27,7 +27,7 @@
 			</nav>
 		</div>
 
-		<div th:fragment = "footer">
+		<div class="footer" th:fragment = "footer">
 			<footer>
 				<small> Created by Diego Sanchez </small>
 

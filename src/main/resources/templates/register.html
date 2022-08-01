@@ -5,9 +5,11 @@
 	</head>
 
 	<body>
-		<div th:insert="general :: header"></div>
+		<div class="navhead">
+			<div th:replace="general :: header"></div>
 
-		<div th:insert="general :: navbar"></div>
+			<div th:replace="general :: navbar"></div>
+		</div>
 
 		<br>
 

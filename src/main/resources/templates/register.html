@@ -5,22 +5,36 @@
 	</head>
 
 	<body>
-		<div class="navhead">
-			<div th:replace="general :: header"></div>
+		<div class="container">
+			<div class="navhead">
+				<div th:replace="general :: header"></div>
 
-			<div th:replace="general :: navbar"></div>
+				<div th:replace="general :: navbar"></div>
+			</div>
+
+			<div class="content">
+				<div class="form">
+					<form th:action="@{/register}" th:object="${formInput}" method="post">
+						<ul>
+							<li>
+								Email:
+								<input type="email" th:field="*{email}" />
+							</li>
+
+							<li>
+								Password:
+								<input type="password" th:field="*{password}" />
+							</li>
+
+							<li>
+								<input type="submit" value="Register" />
+							</li>
+						</ul>
+					</form>
+				</div>
+			</div>
+
+			<div th:insert="general :: footer"></div>
 		</div>
-
-		<br>
-
-		<form th:action="@{/register}" th:object="${formInput}" method="post">
-			Email:
-			<input type="email" th:field="*{email}" />
-			Password:
-			<input type="password" th:field="*{password}" />
-			<input type="submit" value="Register" />
-		</form>
-
-		<div th:insert="general :: footer"></div>
 	</body>
 </html>

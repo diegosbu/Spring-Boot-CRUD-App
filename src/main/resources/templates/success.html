@@ -5,15 +5,20 @@
 	</head>
 
 	<body>
-		<div class="navhead">
-			<div th:replace="general :: header"></div>
+		<div class = "container">
+			<div class="navhead">
+				<div th:replace="general :: header"></div>
 
-			<div th:replace="general :: navbar"></div>
+				<div th:replace="general :: navbar"></div>
+			</div>
+
+			<div class="content">
+				<p th:if="${success}">Successfully Registered! You can login now</p>
+
+				<p th:unless="${success}">Email already exists</p>
+			</div>
+
+			<div th:insert="general :: footer"></div>
 		</div>
-
-		<p th:if="${success}">Successfully Registered! You can login now</p>
-		<p th:unless="${success}">Email already exists</p>
-
-		<div th:insert="general :: footer"></div>
 	</body>
 </html>

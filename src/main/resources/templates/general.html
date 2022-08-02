@@ -18,11 +18,13 @@
 		<div class="navbar" id th:fragment = "navbar">
 			<nav>
 				<a href="/">Home</a>
-				&nbsp;
+
+				<a sec:authorize="isAuthenticated()" href="/search">Search</a>
+
 				<a sec:authorize="isAnonymous()" href="/register"> Register</a>
-				&nbsp;
+
 				<a sec:authorize="isAnonymous()" href="/login">Login</a>
-				&nbsp;
+
 				<a sec:authorize="isAuthenticated()" href="/logout">Logout</a>
 			</nav>
 		</div>

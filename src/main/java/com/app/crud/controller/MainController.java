@@ -2,6 +2,7 @@ package com.app.crud.controller;
 
 //code partially used from: https://spring.io/guides/gs/handling-form-submission/
 
+import com.app.crud.model.ApiPlayerInfo;
 import com.app.crud.model.Users;
 import com.app.crud.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,31 +13,40 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.Arrays;
 
 @Controller
 public class MainController {
     @Autowired
     UsersService userService;
 
+    //  home - displays homepage
     @GetMapping("/")
     public String home() {
         return "index";
     }
 
+
+    //  searchForm - displays basketball player search bar
     @GetMapping("/search")
     public String searchForm() {
         return "search";
     }
 
+    //  searchSubmit - displays json array search results from queried nba player name
     @PostMapping("/search")
-    public String searchSubmit(@RequestParam(value="name", required = true) String playerName, Model model) {
-        String playerName2 = playerName.replace(" ", "_");
+    public String searchSubmit(@RequestParam(value="name", required = true) String playerName, Model model) throws IOException {
         String uri = "https://www.balldontlie.io/api/v1/players?search=" + playerName;
 
         RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject(uri, String.class);
+        ObjectMapper mapper = new ObjectMapper();
 
-        model.addAttribute("playerStats", result);
+        String result = restTemplate.getForObject(uri, String.class);
+        ApiPlayerInfo apiResponse = mapper.readValue(result, ApiPlayerInfo.class);
+
+        model.addAttribute("jsonResults", Arrays.toString(apiResponse.getData()));
 
         return "results";
     }

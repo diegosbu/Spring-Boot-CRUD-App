@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class MainController {
@@ -19,6 +21,24 @@ public class MainController {
     @GetMapping("/")
     public String home() {
         return "index";
+    }
+
+    @GetMapping("/search")
+    public String searchForm() {
+        return "search";
+    }
+
+    @PostMapping("/search")
+    public String searchSubmit(@RequestParam(value="name", required = true) String playerName, Model model) {
+        String playerName2 = playerName.replace(" ", "_");
+        String uri = "https://www.balldontlie.io/api/v1/players?search=" + playerName;
+
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.getForObject(uri, String.class);
+
+        model.addAttribute("playerStats", result);
+
+        return "results";
     }
 
     //  loginForm - displays login form

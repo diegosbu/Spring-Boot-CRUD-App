@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+	<head th:replace="general :: head">
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="navhead">
+				<div th:replace="general :: header"></div>
+
+				<div th:replace="general :: navbar"></div>
+			</div>
+
+			<div class="content">
+				<p th:text="${playerStats}"></p>
+			</div>
+
+			<div th:replace="general :: footer"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+	<head th:replace="general :: head">
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="navhead">
+				<div th:replace="general :: header"></div>
+
+				<div th:replace="general :: navbar"></div>
+			</div>
+
+			<div class="content">
+				<form th:action="@{/search}" method="post">
+					<ul>
+						<li>
+							Search a player:
+							<input type="text" name="playerName" th:name="name"/>
+						</li>
+
+						<li>
+							<input type="submit" value="Search" />
+						</li>
+					</ul>
+				</form>
+			</div>
+
+			<div th:replace="general :: footer"></div>
+		</div>
+	</body>
+</html>

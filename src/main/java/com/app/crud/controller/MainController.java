@@ -1,6 +1,8 @@
 package com.app.crud.controller;
 
-//code partially used from: https://spring.io/guides/gs/handling-form-submission/
+//code resources: https://spring.io/guides/gs/handling-form-submission/
+//  https://springframework.guru/processing-json-jackson/
+//  https://stackoverflow.com/questions/6349421/how-to-use-jackson-to-deserialise-an-array-of-objects/6349488#6349488
 
 import com.app.crud.model.ApiPlayerInfo;
 import com.app.crud.model.Users;

@@ -1,5 +1,7 @@
 package com.app.crud.model;
 
+//  code resources: https://springframework.guru/processing-json-jackson/
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //  Players - model of player info received from players api call

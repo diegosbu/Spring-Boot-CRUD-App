@@ -1,5 +1,7 @@
 package com.app.crud.model;
 
+//  code resources: https://springframework.guru/processing-json-jackson/
+
 import java.util.Arrays;
 import java.util.Map;
 

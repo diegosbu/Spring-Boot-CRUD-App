@@ -1,3 +1,3 @@
-# Basic Crud App
+# NBA Stats Crud App
 
-Web app made to practice Java and the Spring Boot framework. This app includes basic registration and login functionality. More features will be added along the way.
+Web app made utilizing Java, the Spring Boot framework, and the balldontlie api (also used in a previous project). This app currently includes registration, login, and an nba player info search functionality. More features will be added along the way.

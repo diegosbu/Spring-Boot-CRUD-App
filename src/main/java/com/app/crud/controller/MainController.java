@@ -6,6 +6,7 @@ package com.app.crud.controller;
 
 import com.app.crud.model.ApiPlayerInfo;
 import com.app.crud.model.Users;
+import com.app.crud.service.PlayersService;
 import com.app.crud.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,19 +18,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.util.Arrays;
 
 @Controller
 public class MainController {
     @Autowired
     UsersService userService;
 
+    @Autowired
+    PlayersService playersService;
+
     //  home - displays homepage
     @GetMapping("/")
     public String home() {
         return "index";
     }
-
 
     //  searchForm - displays basketball player search bar
     @GetMapping("/search")
@@ -48,9 +50,16 @@ public class MainController {
         String result = restTemplate.getForObject(uri, String.class);
         ApiPlayerInfo apiResponse = mapper.readValue(result, ApiPlayerInfo.class);
 
-        model.addAttribute("jsonResults", Arrays.toString(apiResponse.getData()));
+        model.addAttribute("jsonResults", apiResponse.getData());
 
         return "results";
+    }
+
+    @PostMapping("/add")
+    public String addPlayer(@RequestParam(value="id", required = true) int playerID) {
+        playersService.insert(playerID);
+
+        return "index";
     }
 
     //  loginForm - displays login form
@@ -83,5 +92,4 @@ public class MainController {
 
         return "success";
     }
-
 }

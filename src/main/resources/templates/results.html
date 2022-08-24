@@ -12,7 +12,19 @@
 			</div>
 
 			<div class="content">
-				<a th:each="jsonResult: ${jsonResults}" th:href="@{/add(id=${jsonResult.id})}" th:text="${jsonResult}"></a>
+				<div th:if="${jsonResults}">
+					<h2>Search Results</h2>
+
+					<a th:each="jsonResult: ${jsonResults}" th:href="@{/add(id=${jsonResult.id})}"
+					   th:text="${jsonResult}"></a>
+				</div>
+
+				<div th:if="${favorites}">
+					<h2>Favorites List</h2>
+
+					<span th:each="player: ${playersList}"
+					   th:text="${player}"></span>
+				</div>
 			</div>
 
 			<div th:replace="general :: footer"></div>

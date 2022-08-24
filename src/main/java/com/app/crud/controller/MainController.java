@@ -5,6 +5,7 @@ package com.app.crud.controller;
 //  https://stackoverflow.com/questions/6349421/how-to-use-jackson-to-deserialise-an-array-of-objects/6349488#6349488
 
 import com.app.crud.model.ApiPlayerInfo;
+import com.app.crud.model.Players;
 import com.app.crud.model.Users;
 import com.app.crud.service.PlayersService;
 import com.app.crud.service.UsersService;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -33,46 +35,13 @@ public class MainController {
         return "index";
     }
 
-    //  searchForm - displays basketball player search bar
-    @GetMapping("/search")
-    public String searchForm() {
-        return "search";
-    }
-
-    //  searchSubmit - displays json array search results from queried nba player name
-    @PostMapping("/search")
-    public String searchSubmit(@RequestParam(value="name") String playerName, Model model) throws IOException {
-        String uri = "https://www.balldontlie.io/api/v1/players?search=" + playerName;
-
-        RestTemplate restTemplate = new RestTemplate();
-        ObjectMapper mapper = new ObjectMapper();
-
-        String result = restTemplate.getForObject(uri, String.class);
-        ApiPlayerInfo apiResponse = mapper.readValue(result, ApiPlayerInfo.class);
-
-        model.addAttribute("jsonResults", apiResponse.getData());
-
-        return "results";
-    }
-
-    @GetMapping("/add")
-    public String addPlayer(@RequestParam(value="id") int playerID) {
-        if (playersService.insert(playerID)!= 0) {
-            System.out.println("player added to favorites!");
-        } else {
-            System.out.println("player already favorited!");
-        }
-
-        return "index";
-    }
-
     //  loginForm - displays login form
     @GetMapping("/login")
     public String loginForm() {
         return "login";
     }
 
-    //  loginForm - displays login form
+    //  loginForm - displays logout button
     @GetMapping("/logout")
     public String logoutForm() {
         return "logout";
@@ -95,5 +64,50 @@ public class MainController {
         }
 
         return "success";
+    }
+
+    //  searchForm - displays basketball player search bar
+    @GetMapping("/search")
+    public String searchForm() {
+        return "search";
+    }
+
+    //  searchSubmit - displays json search results from queried player name
+    @PostMapping("/search")
+    public String searchSubmit(@RequestParam(value="name") String playerName, Model model) throws IOException {
+        String uri = "https://www.balldontlie.io/api/v1/players?search=" + playerName;
+
+        RestTemplate restTemplate = new RestTemplate();
+        ObjectMapper mapper = new ObjectMapper();
+
+        String result = restTemplate.getForObject(uri, String.class);
+        ApiPlayerInfo apiResponse = mapper.readValue(result, ApiPlayerInfo.class);
+
+        model.addAttribute("jsonResults", apiResponse.getData());
+
+        return "results";
+    }
+
+    //  addPlayer - adds player to user's favorites list
+    @GetMapping("/add")
+    public String addPlayer(@RequestParam(value="id") int playerID, Model model) {
+        if (playersService.insert(playerID)!= 0) {
+            System.out.println("player added to favorites!");
+        } else {
+            System.out.println("player already favorited!");
+        }
+
+        return "index";
+    }
+
+    //  getFavorites - displays user's list of favorited players
+    @GetMapping("/favorites")
+    public String getFavorites(Model model) {
+        List<Players> players = playersService.find();
+
+        model.addAttribute("favorites", true);
+        model.addAttribute("playersList", players);
+
+        return "results";
     }
 }

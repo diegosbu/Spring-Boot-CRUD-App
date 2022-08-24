@@ -3,6 +3,7 @@ package com.app.crud.service;
 import com.app.crud.model.Users;
 import com.app.crud.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,12 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public List<Users> findOne(Users user) {
         return usersRepository.findOne(user);
+    }
+
+    //  findId - calls usersRepository to return user id
+    @Override
+    public int findId() {
+        return usersRepository.findId(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     //  findOne - calls usersRepository to return if user exists

@@ -9,5 +9,8 @@ public interface UsersRepository {
 
     List<Users> findOne(Users user);
 
+    //  findID - returns user_id based on email
+    int findId(String email);
+
     boolean exists(Users user);
 }

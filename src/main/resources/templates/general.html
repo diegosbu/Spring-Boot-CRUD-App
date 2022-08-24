@@ -19,6 +19,8 @@
 			<nav>
 				<a href="/">Home</a>
 
+				<a sec:authorize="isAuthenticated()" href="/favorites">Favorites</a>
+
 				<a sec:authorize="isAuthenticated()" href="/search">Search</a>
 
 				<a sec:authorize="isAnonymous()" href="/register"> Register</a>

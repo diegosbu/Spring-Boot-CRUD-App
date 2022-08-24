@@ -9,5 +9,7 @@ public interface UsersService {
 
     List<Users> findOne(Users user);
 
+    int findId();
+
     boolean exists(Users user);
 }

@@ -5,13 +5,13 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// UsersIdMapper - RowMapper tht maps user id
-public class UsersIdMapper implements RowMapper {
+// PlayersIdMapper - RowMapper tht maps player id
+public class PlayersIdMapper implements RowMapper {
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Users user = new Users();
-        user.setId(rs.getInt("user_id"));
+        Players player = new Players();
+        player.setId(rs.getInt("player_id"));
 
-        return user;
+        return player;
     }
 }

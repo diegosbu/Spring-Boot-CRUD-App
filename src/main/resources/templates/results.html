@@ -12,7 +12,7 @@
 			</div>
 
 			<div class="content">
-				<a th:each="jsonResult: ${jsonResults}" th:href="@{/}" th:text="${jsonResult}"></a>
+				<a th:each="jsonResult: ${jsonResults}" th:href="@{/add(id=${jsonResult.id})}" th:text="${jsonResult}"></a>
 			</div>
 
 			<div th:replace="general :: footer"></div>

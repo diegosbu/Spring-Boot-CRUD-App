@@ -30,7 +30,6 @@ public class UsersRepositoryImpl implements UsersRepository {
     @Override
     public List<Users> findOne(Users formInput) {
         String userEmail = formInput.getEmail();
-        String userPwd = formInput.getPassword();
 
         return jdbcTemplate.query("SELECT email, password FROM users WHERE email = ?", new UsersPwdMapper(), userEmail);
     }

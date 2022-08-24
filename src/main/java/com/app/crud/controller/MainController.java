@@ -41,7 +41,7 @@ public class MainController {
 
     //  searchSubmit - displays json array search results from queried nba player name
     @PostMapping("/search")
-    public String searchSubmit(@RequestParam(value="name", required = true) String playerName, Model model) throws IOException {
+    public String searchSubmit(@RequestParam(value="name") String playerName, Model model) throws IOException {
         String uri = "https://www.balldontlie.io/api/v1/players?search=" + playerName;
 
         RestTemplate restTemplate = new RestTemplate();
@@ -55,9 +55,13 @@ public class MainController {
         return "results";
     }
 
-    @PostMapping("/add")
-    public String addPlayer(@RequestParam(value="id", required = true) int playerID) {
-        playersService.insert(playerID);
+    @GetMapping("/add")
+    public String addPlayer(@RequestParam(value="id") int playerID) {
+        if (playersService.insert(playerID)!= 0) {
+            System.out.println("player added to favorites!");
+        } else {
+            System.out.println("player already favorited!");
+        }
 
         return "index";
     }

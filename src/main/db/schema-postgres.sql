@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS players (
-    user_id serial REFERENCES users(user_id),
+    user_id int REFERENCES users(user_id),
     player_id int NOT NULL,
     PRIMARY KEY (user_id, player_id)
 );

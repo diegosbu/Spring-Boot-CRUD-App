@@ -2,14 +2,14 @@
 
 package com.app.crud.repository;
 
-import com.app.crud.model.UsersEmailMapper;
-import com.app.crud.model.UsersIdMapper;
-import com.app.crud.model.UsersPwdMapper;
+import com.app.crud.model.users.UsersEmailMapper;
+import com.app.crud.model.users.UsersIdMapper;
+import com.app.crud.model.users.UsersPwdMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.app.crud.model.Users;
+import com.app.crud.model.users.Users;
 
 import java.util.List;
 

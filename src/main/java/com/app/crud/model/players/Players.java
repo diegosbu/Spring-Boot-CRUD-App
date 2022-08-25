@@ -1,4 +1,4 @@
-package com.app.crud.model;
+package com.app.crud.model.players;
 
 //  code resources: https://springframework.guru/processing-json-jackson/
 

@@ -2,6 +2,7 @@ package com.app.crud.model;
 
 //  code partially used from: https://github.com/koushikkothagal/spring-security-jpa
 
+import com.app.crud.model.users.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

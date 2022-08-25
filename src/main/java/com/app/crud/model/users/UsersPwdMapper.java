@@ -1,4 +1,4 @@
-package com.app.crud.model;
+package com.app.crud.model.users;
 
 // code modelled off of: https://www.tutorialspoint.com/springjdbc/springjdbc_rowmapper.htm
 

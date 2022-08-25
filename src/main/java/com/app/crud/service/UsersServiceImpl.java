@@ -1,6 +1,6 @@
 package com.app.crud.service;
 
-import com.app.crud.model.Users;
+import com.app.crud.model.users.Users;
 import com.app.crud.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,6 +1,6 @@
 package com.app.crud.service;
 
-import com.app.crud.model.Users;
+import com.app.crud.model.users.Users;
 
 import java.util.List;
 

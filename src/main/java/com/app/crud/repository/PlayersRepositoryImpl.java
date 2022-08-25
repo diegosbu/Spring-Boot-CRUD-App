@@ -1,8 +1,8 @@
 package com.app.crud.repository;
 
-import com.app.crud.model.Players;
-import com.app.crud.model.PlayersIdMapper;
-import com.app.crud.model.UsersIdMapper;
+import com.app.crud.model.players.Players;
+import com.app.crud.model.players.PlayersNameMapper;
+import com.app.crud.model.users.UsersIdMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -16,22 +16,22 @@ public class PlayersRepositoryImpl implements PlayersRepository {
 
     //  insert - inserts a player into the players table
     @Override
-    public int insert(int playerID, int userId) {
-        return jdbcTemplate.update("INSERT INTO players(user_id, player_id) VALUES (?, ?)",
-                userId, playerID);
+    public int insert(int playerID, String playerFirst, String playerLast, int userId) {
+        return jdbcTemplate.update("INSERT INTO players(user_id, first_name, last_name, player_id) VALUES (?, ?, ?, ?)",
+                userId, playerFirst, playerLast, playerID);
     }
 
-    //  remove - removes a player from the players table
+    //  remove - removes specific player from players table corresponding to user's id
     @Override
-    public int remove(int playerID) {
-        return 0;
+    public int remove(int playerID, int userId) {
+        return jdbcTemplate.update("DELETE FROM players WHERE user_id = ? AND player_id = ?", userId, playerID);
     }
 
     //  find - returns all players in the players table corresponding to a given user id
     @Override
     public List<Players> find(int userId) {
-        return jdbcTemplate.query("SELECT player_id FROM players WHERE user_id = ?",
-                new PlayersIdMapper(), userId);
+        return jdbcTemplate.query("SELECT player_id, first_name, last_name FROM players WHERE user_id = ?",
+                new PlayersNameMapper(), userId);
     }
 
     //  exists - returns if a given player exists with the matching player/user id's

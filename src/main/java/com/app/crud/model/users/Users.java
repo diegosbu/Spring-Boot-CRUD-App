@@ -1,4 +1,4 @@
-package com.app.crud.model;
+package com.app.crud.model.users;
 
 //  Model of users data fields
 

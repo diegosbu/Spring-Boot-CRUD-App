@@ -1,4 +1,4 @@
-package com.app.crud.model;
+package com.app.crud.model.users;
 
 import org.springframework.jdbc.core.RowMapper;
 

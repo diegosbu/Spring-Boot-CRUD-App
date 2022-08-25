@@ -2,6 +2,8 @@ package com.app.crud.model;
 
 //  code resources: https://springframework.guru/processing-json-jackson/
 
+import com.app.crud.model.players.Players;
+
 import java.util.Arrays;
 import java.util.Map;
 

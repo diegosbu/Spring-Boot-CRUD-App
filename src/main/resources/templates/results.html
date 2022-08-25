@@ -12,19 +12,22 @@
 			</div>
 
 			<div class="content">
-				<div th:if="${jsonResults}">
-					<h2>Search Results</h2>
+				<h2 th:if="${jsonResults}">Search Results</h2>
 
-					<a th:each="jsonResult: ${jsonResults}" th:href="@{/add(id=${jsonResult.id})}"
-					   th:text="${jsonResult}"></a>
-				</div>
+				<a th:if="${jsonResults}" th:each="jsonResult: ${jsonResults}" th:href="@{/add(id=${jsonResult.id}, firstName=${jsonResult.getFirst_name()}, lastName=${jsonResult.getLast_name()})}"
+				   th:text="${jsonResult.getFirst_name()} + ' ' + ${jsonResult.getLast_name()}"></a>
 
-				<div th:if="${favorites}">
-					<h2>Favorites List</h2>
+				<h2 th:if="${favorites}">Favorites List</h2>
 
-					<span th:each="player: ${playersList}"
-					   th:text="${player}"></span>
-				</div>
+				<th:block th:each="player: ${playersList}">
+					<span th:if="${favorites}" th:text="${player.getFirst_name()} + ' ' + ${player.getLast_name()}">
+					</span>
+					<form th:if="${favorites}" th:action="@{/remove}" method="post">
+						<button type="submit" th:name="id" th:value="${player.getId()}"> Remove </button>
+					</form>
+				</th:block>
+
+
 			</div>
 
 			<div th:replace="general :: footer"></div>

@@ -3,7 +3,7 @@ package com.app.crud.service;
 // code partially used from: https://github.com/koushikkothagal/spring-security-jpa
 
 import com.app.crud.model.MyUserDetails;
-import com.app.crud.model.Users;
+import com.app.crud.model.users.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -5,8 +5,8 @@ package com.app.crud.controller;
 //  https://stackoverflow.com/questions/6349421/how-to-use-jackson-to-deserialise-an-array-of-objects/6349488#6349488
 
 import com.app.crud.model.ApiPlayerInfo;
-import com.app.crud.model.Players;
-import com.app.crud.model.Users;
+import com.app.crud.model.players.Players;
+import com.app.crud.model.users.Users;
 import com.app.crud.service.PlayersService;
 import com.app.crud.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +51,7 @@ public class MainController {
     @GetMapping("/register")
     public String registerForm(Model model) {
         model.addAttribute("formInput", new Users());
+
         return "register";
     }
 
@@ -90,14 +91,27 @@ public class MainController {
 
     //  addPlayer - adds player to user's favorites list
     @GetMapping("/add")
-    public String addPlayer(@RequestParam(value="id") int playerID, Model model) {
-        if (playersService.insert(playerID)!= 0) {
+    public String addPlayer(@RequestParam(value="id") int playerID, @RequestParam(value="firstName")
+                                String playerFirst, @RequestParam(value="lastName") String playerLast) {
+        if (playersService.insert(playerID, playerFirst, playerLast)!= 0) {
             System.out.println("player added to favorites!");
         } else {
             System.out.println("player already favorited!");
         }
 
         return "index";
+    }
+
+    //  removePlayer - removes player from user's favorites list
+    @PostMapping("/remove")
+    public String removePlayer(@RequestParam(value="id") int playerID) {
+        if (playersService.remove(playerID)!= 0) {
+            System.out.println("player removed from favorites!");
+        } else {
+            System.out.println("player not removed!");
+        }
+
+        return "redirect:/favorites";
     }
 
     //  getFavorites - displays user's list of favorited players
